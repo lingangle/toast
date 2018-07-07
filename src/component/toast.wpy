@@ -1,0 +1,50 @@
+<!--  -->
+<template>
+<view class="toast-model" hidden="{{isHidden}}">
+  <image src="{{icon}}"></image>
+  <text>{{title}}</text>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy';
+export default class toast extends wepy.component {
+  props = {};
+
+  data = {
+    icon:"../img/logo.jpg",
+    title:"github",
+    isHidden:true
+  };
+
+  components = {};
+
+  methods = {
+    show(opt){    
+      this.icon = opt.icon||'../img/logo.jpg';
+      this.title = opt.title||'github';
+      this.isHidden = false;
+      setTimeout(() => {
+        this.isHidden = true;
+        this.$apply();
+      }, opt.duration||2000);
+    }
+  };
+}
+</script>
+
+<style lang='less'>
+.toast-model{
+  position:fixed;
+  width: 100%;
+  height: 100%;
+  background-color: lightblue;
+  opacity: .3;
+  display: flex;
+  top: 0;
+  left: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>

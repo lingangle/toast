@@ -1,0 +1,36 @@
+<style lang="less">
+</style>
+<template>
+  <view class="container">
+    Hello world
+    <button @tap="showModal">弹框</button>
+  </view>
+  <child></child>
+  <toast></toast>
+</template>
+
+<script>
+import wepy from 'wepy';
+import toast from '../component/toast';
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '弹框'
+  };
+  components = {
+    toast
+  };
+  methods = {
+    showModal() {
+      let promise = this.$invoke('toast', 'show', {
+        title: 'github',
+        icon:
+          '../img/logo.jpg',
+        duration: 1000
+      });
+    }
+  };
+
+
+}
+</script>
